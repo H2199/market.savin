@@ -66,7 +66,7 @@ if(isset($_GET['image'])&&!empty($_GET['image'])){
 	$img_N = clean_var($_GET['image']);
 	$find_image = mysql_query("SELECT COUNT(*) FROM images WHERE moderation = 1 AND N = '$img_N' ")or die(mysql_error());
 	$count = mysql_num_rows($find_image);
-	if($count==0){ header('Location: http://so-funny.ru/index.php'); }
+	if($count==0){ header('Location: index.php'); }
 }else{
 		$img_N = $first_img_id;
 	}
@@ -122,21 +122,21 @@ $img_info=mysql_fetch_array($q);
 		
 		<div id="center">
 			<div id="current_tag">
-				<p>Сейчас смотрим:</p>
+				<p>We are looking at:</p>
 					<?php
 						$tag_info; // id ru en
 						$find_tags_info = mysql_query("SELECT * FROM tags")or die(mysql_error());
 						$tag_list = '';
-						if($tag == '') {$tag_list = '<li><a href="http://so-funny.ru">Все картиночки</a></li>'.$tag_list;}
+						if($tag == '') {$tag_list = '<li><a href="index.php">All photos</a></li>'.$tag_list;}
 						while($tags = mysql_fetch_array($find_tags_info)){
 							$first_img_tag_id = take_pic_id('first',0,$tags['id']);
 							if($tags['id'] == $tag){
-								$tag_list = '<li><a href="index.php?image='.$img_N.'&tag='.$tags['id'].'">'.$tags['ru'].'</a></li>'.$tag_list;
+								$tag_list = '<li><a href="index.php?image='.$img_N.'&tag='.$tags['id'].'">'.$tags['en'].'</a></li>'.$tag_list;
 							}else{
-									$tag_list .= '<li><a href="index.php?image='.$first_img_tag_id.'&tag='.$tags['id'].'">'.$tags['ru'].'</a></li>';
+									$tag_list .= '<li><a href="index.php?image='.$first_img_tag_id.'&tag='.$tags['id'].'">'.$tags['en'].'</a></li>';
 								}
 						}
-						if($tag != ''){$tag_list .= '<li><a href="http://so-funny.ru">Все картиночки</a></li>';}
+						if($tag != ''){$tag_list .= '<li><a href="index.php">All photos</a></li>';}
 						$tag_list = '<ul>'.$tag_list.'</ul>';
 						echo $tag_list;
 					?>
@@ -148,14 +148,14 @@ $img_info=mysql_fetch_array($q);
 				<?php if($auth==true){ include 'admin/update_form.php';} ?>
 			</div>
 			<div id="random">
-				<a href="index.php?image=<?php echo random_pic_id();?>">случайная картиночка</a>
+				<a href="index.php?image=<?php echo random_pic_id();?>">random picture</a>
 			</div>
 			<div id="tags">
 				<?php echo show_tag_list($img_info["N"]);?>
 			</div>
 			<div class="share42init"></div>
-			<script type="text/javascript" src="http://so-funny.ru/js/share42/share42.js"></script>
-			<script type="text/javascript">share42('http://so-funny.ru/js/share42/')</script>
+			<script type="text/javascript" src="js/share42/share42.js"></script>
+			<script type="text/javascript">share42('js/share42/')</script>
 		</div>
 		<div id="imgtext">
 			<div> 
@@ -164,9 +164,9 @@ $img_info=mysql_fetch_array($q);
 				?>
 			</div>
 		</div>
-			<div id="footer">
-				<a href="russian_bear.php">made by Russian bear</a>
-			</div>
+		<div id="footer">
+			<a href="about_author.php">ABOUT AUTHOR</a>
+		</div>
 	</body>
 </html>
 

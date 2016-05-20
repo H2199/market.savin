@@ -24,10 +24,10 @@ body {
     color: #ff9035;
     text-decoration: none;
 }
-#current_tag a:hover{
-	color: #ff6523;
+#current_tag a:hover {
+    color: #ff6523;
     cursor: pointer;
-	font-weight:900;
+    font-weight: 900;
 }
 #current_tag ul {
     background-color: white;
@@ -339,4 +339,89 @@ body {
 #previews img:hover{
 	-webkit-filter: contrast(140%);
 	filter: contrast(140%);
+}
+#author_page {
+    border: 1px solid #ddd;
+    height: 397px;
+    margin: 80px auto 15px;
+    padding-bottom: 70px;
+    width: 90%;
+}
+#about_author {
+}
+#about_author h1 {
+    font-family: "Neucha",arial,serif;
+    margin-bottom: 18px;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+#about_author p {
+    float: left;
+    font-family: Comic Sans MS;
+    margin-left: 15px;
+    margin-top: -6px;
+    text-align: justify;
+    width: 338px;
+}
+#about_author img {
+    float: right;
+    margin-bottom: 20px;
+    margin-right: 30px;
+    width: 500px;
+}
+#about_author button {
+    background-color: #ffb477;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    float: left;
+    font-size: 18px;
+    height: 38px;
+    margin-left: 57px;
+    margin-top: 0;
+    width: 250px;
+}
+#about_author button:hover {
+    background-color: #ff913d;
+    border: 3px solid #ddd;
+    cursor: pointer;
+    margin-top: 1px;
+}
+.author_page_links p{
+	float: left;
+    margin: 0;
+    padding: 9px;
+}
+.author_page_links ul{
+	background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-left: 219px;
+    margin-top: 0;
+    min-height: 38px;
+    padding: 3px;
+    position: absolute;
+    width: 424px;
+}
+
+.author_page_links li {
+    float: left;
+    list-style: outside none none;
+    padding: 10px;
+	border-right: 1px solid #ddd;
+}
+.author_page_links li:last-of-type{
+	border:none;
+}
+.author_page_links a{
+	text-decoration: none;
+	color: #ff9035;
+}
+.author_page_links a:hover{
+	color: #ff6523;
+    cursor: pointer;
+	font-weight: 900;
+}
+
+#share_42_author_page{
+	
 }

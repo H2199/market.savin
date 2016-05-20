@@ -104,8 +104,8 @@ $img_info=mysql_fetch_array($q);
 <html lang="ru">
 	<head>
 		<?php if($auth==true){echo'<link type="text/css" rel="stylesheet" media="all" href="css/admin_style.css">';}?>
-		<meta name="description" content="Картинка №<?php echo $img; ?> Смотрите все самые прикольные картинки у нас." >
-		<title> <?php echo $img_info["description"]?> </title>
+		<meta name="description" content="Photo №<?php echo $img.$img_info['description'];?> " >
+		<title> <?php echo $img_info["title"]?> </title>
 		<!--<script type="text/javascript" src="/js/resize.js"></script>-->
 		<link type="text/css" rel="stylesheet" media="all" href="css/style.css">
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
@@ -143,7 +143,7 @@ $img_info=mysql_fetch_array($q);
 			</div>
 			<div id="content">
 				<div id="main_img">
-					<img src="images/<?php echo $img_info["file"]; ?>" alt="<?php echo $img_info["description"]; ?>">
+					<img src="images/<?php echo $img_info["file"]; ?>" alt="<?php echo $img_info["title"]; ?>">
 				</div>
 				<?php if($auth==true){ include 'admin/update_form.php';} ?>
 			</div>

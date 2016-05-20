@@ -82,15 +82,16 @@ switch($_POST["action"]){
 		header("$redirect");
 	break;
 	case 2:
-		if(isset($_POST["about"])||isset($_POST["description"])||isset($_POST["N"])||isset($_POST["tags"])){
+		if(isset($_POST["about"])||isset($_POST["title"])||isset($_POST["N"])||isset($_POST["tags"])){
 			$img_id = isset($_POST["N"])?'?image='.$_POST["N"]:'';
 			$tablename="images";
+			$title=$_POST["title"];
 			$description=$_POST["description"];
 			$about=$_POST["about"];
 			$imgage_number = isset($_POST["image"])?$_POST["image"]:'';
 			$N=$_POST["N"];
 			$redirect = "location:../index.php$img_id";
-			$up = "UPDATE `$tablename`  SET `description` = '$description', `about` = '$about' WHERE `N` = '$N'";
+			$up = "UPDATE `$tablename`  SET `title` = '$title', `about` = '$about', `description` = '$description' WHERE `N` = '$N'";
 			mysql_query($up)or die(mysql_error());
 
 			$query=mysql_query("SELECT * FROM tags")or die(mysql_error());

@@ -20,8 +20,10 @@ echo '
 			<input type="hidden" name="image" value='.$img_N.'>
 			<p>Описание под картинкой:</p>
 			<textarea name="about">'.$img_info["about"].'</textarea>
+			<p>description:</p>
+			<textarea name="about">'.$img_info["description"].'</textarea>
 			<p>Title+Alt:</p>
-			<textarea name="description">'.$img_info["description"].'</textarea>
+			<textarea name="title">'.$img_info["title"].'</textarea>
 			
 ';	
 				echo tag_checkbox_select($img_info["N"]);

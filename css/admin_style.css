@@ -1,0 +1,47 @@
+
+#update_form {
+    background-color: white;
+    border: 1px solid #ddd;
+    left: 100px;
+    padding: 10px 20px;
+    position: fixed;
+    top: 44px;
+    width: 300px;
+    z-index: 999;
+}
+.update_form {
+	margin-bottom:10px;
+}
+.update_form input {
+    margin-top: 6px;
+}
+.update_form textarea {
+    width: 100%;
+}
+.update_form a {
+    color: grey;
+    font-family: "Neucha",arial,serif;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 66px;
+    text-decoration: none;
+}
+.update_form a {
+    color: #ff9035;
+    font-family: "Neucha",arial,serif;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 66px;
+    text-decoration: none;
+}
+.update_form a:hover{
+    color: #ff6523;
+	cursor: pointer;
+}
+.update_form p {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+.checkboxes {
+    margin-top: 10px;
+}

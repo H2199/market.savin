@@ -19,7 +19,7 @@ tag_checkbox_select($img)
 <html>
 	<head>
 		<title>
-		 Картинка №1
+		 Text about who am I and how is going now.
 		</title>
 		<link type="text/css" rel="stylesheet" media="all" href="css/style.css" />
 		<script type="text/javascript" src="/js/resize.js"></script>

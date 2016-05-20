@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //DB connect +PWDs
 require '../privat_info.php';
 mysql_con();

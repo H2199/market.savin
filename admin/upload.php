@@ -84,8 +84,8 @@ function show_upload_form(){
 										$margin = ($height_i-$width_i)/2;
 										crop($path.$filename, $small_img_path.$filename, array(0, $margin, $width_i, $width_i),false);
 									}
-								if($height_i>=125 && $width_i>=125){
-									resize($small_img_path.$filename, $small_img_path.$filename, 125, 125);
+								if($height_i>=200 && $width_i>=200){
+									resize($small_img_path.$filename, $small_img_path.$filename, 200, 200);
 								}
 							}
 						}

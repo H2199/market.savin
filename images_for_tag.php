@@ -68,7 +68,7 @@ function show_previews($tag_id, $amount, $all){
 			</div>
 		</div>
 		<div id="random">
-			<a href="index.php?image=<?php echo random_pic_id();?>">случайная картиночка</a>
+			<a href="index.php?image=<?php echo random_pic_id();?>">random picture</a>
 		</div>
 		<div id="tags">
 			<?php echo show_tag_list('all');?>

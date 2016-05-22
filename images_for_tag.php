@@ -55,23 +55,21 @@ function show_previews($tag_id, $amount, $all){
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
 	</head>
 	<body>
-		<div id="content">
-			<div id="previews">
-				<?php
-					if(isset($_GET['tag'])){
-						$tag = clean_var($_GET['tag']);
-						echo show_previews($tag, 100, false);
-					}else{
-							echo show_previews(0, 100, true);
-						}
-				?>
-			</div>
+		<div id="previews">
+			<?php
+				if(isset($_GET['tag'])){
+					$tag = clean_var($_GET['tag']);
+					echo show_previews($tag, 100, false);
+				}else{
+						echo show_previews(0, 100, true);
+					}
+			?>
 		</div>
 		<div id="random">
 			<a href="index.php?image=<?php echo random_pic_id();?>">random picture</a>
 		</div>
 		<div id="tags">
-			<?php echo show_tag_list('all');?>
+			<?php echo show_tag_list('all', true);?>
 		</div>
 		<div class="share42init"></div>
 		<script type="text/javascript" src="http://so-funny.ru/js/share42/share42.js"></script>

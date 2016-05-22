@@ -32,6 +32,12 @@ echo'
 				<input type="submit" value="Отправить новое описание">
 			</div>
 		</form>
+		<form action="admin/update.php" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="N" value='.$img_info["N"].'>
+			<input type="hidden" name="action" value="3">
+			<input type="hidden" name="image" value='.$img_N.'>
+			<input type="submit" value="Убрать фото">
+		</form>
 	</div>
 </div>	
 ';

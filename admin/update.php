@@ -54,11 +54,12 @@ switch($_POST["action"]){
 						//resize to smaller pic
 						if($height_i>=1000 || $width_i>=1000){
 							if($width_i >= $height_i){
-								resize($path.$filename, $path.$filename, 1000, 0);
+								resize($path.$filename, $path.$filename, 1000, 0, false);
 							}else{
-									resize($path.$filename, $path.$filename, 0, 1000);
+									resize($path.$filename, $path.$filename, 0, 1000, false);
 								}
 						}
+						list($width_i, $height_i, $type) = getimagesize($path.$filename);// take changed size
 						//Make preview for tag_search.php
 						if($width_i>$height_i){
 							//image is horizontal
@@ -68,7 +69,9 @@ switch($_POST["action"]){
 								//image is vertical
 								$margin = ($height_i-$width_i)/2;
 								crop($path.$filename, $small_img_path.$filename, array(0, $margin, $width_i, $width_i),false);
-							}
+							}else{
+									resize($path.$filename, $small_img_path.$filename, 100, 100, true);
+								}
 						if($height_i>=200 && $width_i>=200){
 							resize($small_img_path.$filename, $small_img_path.$filename, 200, 200);
 						}
@@ -120,6 +123,15 @@ switch($_POST["action"]){
 			}
 			header("$redirect");
 		}else{header("$redirect");}
+	break;
+	case 3:
+		if (isset($_POST["N"]) && !empty($_POST["N"])){
+			$tablename="images";
+			$N=$_POST["N"];
+			$up = "UPDATE `images`  SET  `moderation` = '2' WHERE `N` = '$N'";
+			mysql_query($up)or die(mysql_error());
+			header("location:../images_for_tag.php");
+		}
 	break;
 }
 ?>

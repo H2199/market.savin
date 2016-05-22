@@ -58,7 +58,7 @@ echo'
 
 				Описание под картинкой:<br><textarea rows="10" cols="45" name="about");>'.$f['about'].'</textarea><br>
 				Title:<br><textarea rows="10" cols="45" name="title");>'.$f['title'].'</textarea><br>
-				title:<textarea rows="10" cols="45" name="description");>'.$f['description'].'</textarea><br>
+				Description:<br><textarea rows="10" cols="45" name="description");>'.$f['description'].'</textarea><br>
 				<input name="N" type="hidden" value="'.$f['N'].'" >
 				<input name="action" type="hidden" value="send" >
 				<input type="submit" value="Отправить"><br>

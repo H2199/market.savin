@@ -74,6 +74,7 @@ function show_upload_form(){
 											resize($path.$filename, $path.$filename, 0, 1000);
 										}
 								}
+								list($width_i, $height_i, $type) = getimagesize($path.$filename);// take changed size
 								//Make preview for tag_search.php
 								if($width_i>$height_i){
 									//image is horizontal
@@ -83,7 +84,9 @@ function show_upload_form(){
 										//image is vertical
 										$margin = ($height_i-$width_i)/2;
 										crop($path.$filename, $small_img_path.$filename, array(0, $margin, $width_i, $width_i),false);
-									}
+									}else{
+											resize($path.$filename, $small_img_path.$filename, 100, 100, true);
+										}
 								if($height_i>=200 && $width_i>=200){
 									resize($small_img_path.$filename, $small_img_path.$filename, 200, 200);
 								}

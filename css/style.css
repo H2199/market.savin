@@ -218,8 +218,9 @@ body {
 }
 #imgtext {
     border: 1px solid #ddd;
+    float: left;
     height: auto;
-    margin: 95px auto;
+    margin: 0 auto 0 22%;
     padding: 20px 30px;
     position: relative;
     text-align: left;
@@ -296,12 +297,13 @@ body {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 4px;
+    float: left;
     margin-left: 219px;
     margin-top: 0;
-    min-height: 38px;
-    padding: 3px;
-    position: absolute;
-    width: 424px;
+    min-height: 26px;
+    padding: 9px;
+    position: relative;
+    width: 400px;
 }
 #tags li {
     list-style: outside none none;
@@ -313,14 +315,17 @@ body {
     color: #6bbeff;
     float: left;
     margin-left: 10px;
-    margin-top: 8px;
+    margin-top: 3px;
     position: relative;
     text-align: center;
     text-decoration: none;
 }
 #previews {
-    position: absolute;
-    width: 700px;
+    border: 1px solid #ddd;
+    height: 510px;
+    margin: 80px auto 15px;
+    padding-bottom: 70px;
+    width: 70%;
 }
 #previews a {
     float: left;

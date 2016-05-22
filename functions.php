@@ -10,17 +10,18 @@ function random_pic_id(){
 	$rand_N  = mysql_fetch_array($query);
 	return $rand_N[0];
 }
-function show_tag_list($img){
+function show_tag_list($img, $all){
 	if($img == 'all'){
-		$q = "SELECT ru, id FROM tags";
+		$q = "SELECT en, id FROM tags";
 	}else{
-			$q ="SELECT tags.ru, tags.id FROM tags, tag_relation WHERE tag_relation.image_id = '$img' AND tag_relation.tag_id = tags.id";
+			$q ="SELECT tags.en, tags.id FROM tags, tag_relation WHERE tag_relation.image_id = '$img' AND tag_relation.tag_id = tags.id";
 		}
 	$query = mysql_query("$q")or die(mysql_error());
 	$list ='<ul>';
 	while ($f = mysql_fetch_array($query)){
 		$list .='<li><a href="images_for_tag.php?tag='.$f[1].'">'.$f[0].'</a></li>';
 	}
+	if($all == true){$list .='<li><a href="images_for_tag.php">All</a></li>';}
 	$list .='</ul>';
 	return $list;
 }

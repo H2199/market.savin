@@ -51,7 +51,7 @@ function take_pic_id($pic_place, $current_pic, $tag){
 
 if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 	$tag_id = clean_var($_GET['tag']);
-	$find_tag_info = mysql_query("SELECT COUNT(*) FROM tags WHERE id = '$tag_id' ")or die(mysql_error());
+	$find_tag_info = mysql_query("SELECT id FROM tags WHERE id = '$tag_id' ")or die(mysql_error());
 	$count = mysql_num_rows($find_tag_info);
 	if($count!=0){
 		$tag = $_GET['tag'];
@@ -151,7 +151,7 @@ $img_info=mysql_fetch_array($q);
 				<a href="index.php?image=<?php echo random_pic_id();?>">random picture</a>
 			</div>
 			<div id="tags">
-				<?php echo show_tag_list($img_info["N"]);?>
+				<?php echo show_tag_list($img_info["N"], false);?>
 			</div>
 			<div class="share42init"></div>
 			<script type="text/javascript" src="js/share42/share42.js"></script>

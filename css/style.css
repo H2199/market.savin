@@ -3,16 +3,21 @@
     z-index: 1;
 }
 body {
+    background-color: #f1f1f1;
     margin-left: auto;
     margin-right: auto;
     position: relative;
     width: 1000px;
 }
 #current_tag {
-    height: 20px;
-    left: 150px;
+    background-color: #fff;
+    border-color: #ddd;
+    border-style: solid;
+    border-width: 1px 1px 0;
+    height: 50px;
+    left: 149px;
     position: absolute;
-    top: -75px;
+    top: -50px;
     width: 700px;
 }
 #current_tag p {
@@ -50,6 +55,7 @@ body {
     padding: 2px 10px;
 }
 #content {
+    background-color: #fff;
     border: 1px solid #ddd;
     height: 510px;
     margin: 80px auto 15px;
@@ -217,10 +223,11 @@ body {
     text-align: center;
 }
 #imgtext {
+    background-color: #fff;
     border: 1px solid #ddd;
     float: left;
     height: auto;
-    margin: 0 auto 0 22%;
+    margin: 0 auto 50px 22%;
     padding: 20px 30px;
     position: relative;
     text-align: left;
@@ -233,12 +240,14 @@ body {
     text-align: center;
 }
 .left {
+    border: 1px solid #ddd;
     float: left;
     left: 50px;
     position: absolute;
     top: 300px;
 }
 .right {
+    border: 1px solid #ddd;
     float: right;
     position: absolute;
     right: 50px;
@@ -250,7 +259,6 @@ body {
     border-radius: 4px;
     display: inline-block;
     float: right;
-    margin-bottom: 20px;
     margin-right: 219px;
     margin-top: 0;
     padding: 6px 0 0 6px;
@@ -298,7 +306,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     float: left;
-    margin-left: 219px;
+    margin-left: 220px;
     margin-top: 0;
     min-height: 26px;
     padding: 9px;
@@ -309,10 +317,10 @@ body {
     list-style: outside none none;
 }
 #tags li a:hover {
-    color: #567dff;
+    color: #3c4a9b;
 }
 #tags li a {
-    color: #6bbeff;
+    color: #6e9dce;
     float: left;
     margin-left: 10px;
     margin-top: 3px;
@@ -322,20 +330,19 @@ body {
 }
 #previews {
     border: 1px solid #ddd;
-    height: 510px;
     margin: 80px auto 15px;
+    min-height: 510px;
     padding-bottom: 70px;
     width: 70%;
+	background-color: #fff;
 }
 #previews a {
-    float: left;
-    margin-left: 7px;
-    margin-top: 6px;
     padding: 3px;
-    position: relative;
 }
-#previews img{
-	-webkit-transition: all 1s ease;
+#previews img {
+    margin-left: 20px;
+    margin-top: 15px;
+    -webkit-transition: all 1s ease;
 	-moz-transition: all 1s ease;
 	-o-transition: all 1s ease;
 	-ms-transition: all 1s ease;
@@ -347,7 +354,7 @@ body {
 }
 #author_page {
     border: 1px solid #ddd;
-    height: 397px;
+    height: 450px;
     margin: 80px auto 15px;
     padding-bottom: 70px;
     width: 90%;
@@ -366,7 +373,7 @@ body {
     margin-left: 20px;
     margin-top: -6px;
     text-align: justify;
-    width: 338px;
+    width: 310px;
 }
 #about_author img {
     float: right;
@@ -381,7 +388,7 @@ body {
     float: left;
     font-size: 18px;
     height: 38px;
-    margin-left: 57px;
+    margin-left: 170px;
     margin-top: 0;
     width: 250px;
 }
@@ -391,13 +398,13 @@ body {
     cursor: pointer;
     margin-top: 1px;
 }
-.author_page_links p{
-	float: left;
+.author_page_links p {
+    float: left;
     margin: 0;
     padding: 9px;
 }
-.author_page_links ul{
-	background-color: white;
+.author_page_links ul {
+    background-color: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     margin-left: 219px;
@@ -407,27 +414,24 @@ body {
     position: absolute;
     width: 424px;
 }
-
 .author_page_links li {
+    border-right: 1px solid #ddd;
     float: left;
     list-style: outside none none;
     margin: 5px;
     padding: 5px;
-	border-right: 1px solid #ddd;
 }
-.author_page_links li:last-of-type{
-	border:none;
+.author_page_links li:last-of-type {
+    border: medium none;
 }
-.author_page_links a{
-	text-decoration: none;
-	color: #ff9035;
+.author_page_links a {
+    color: #ff9035;
+    text-decoration: none;
 }
-.author_page_links a:hover{
-	color: #ff6523;
+.author_page_links a:hover {
+    color: #ff6523;
     cursor: pointer;
-	font-weight: 900;
+    font-weight: 900;
 }
-
-#share_42_author_page{
-	
+#share_42_author_page {
 }

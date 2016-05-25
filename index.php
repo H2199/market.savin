@@ -25,29 +25,6 @@ function make_next_prev_link($prev, $next, $tag_id){
 	$prev_link='<a href="index.php?image='.$prev.$tag_lnk.'"><img src="img/arrow/arrow-left-'.rand(1,8).'.png" alt="" border="0"></a>'; 
 	$next_link ='<a href="index.php?image='.$next.$tag_lnk.'"><img src="img/arrow/arrow-right-'.rand(1,8).'.png" alt="" border="0"></a>';
 }
-function take_pic_id($pic_place, $current_pic, $tag){
-	switch ($pic_place){ 
-		case 'first':
-			if(empty($tag)){$q = "SELECT MIN(N) FROM images WHERE moderation = 1";}
-			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1";}
-		break;
-		case 'last':
-			if(empty($tag)){$q = "SELECT MAX(N) FROM images WHERE moderation = 1";}
-			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1";}
-		break;
-		case 'next':
-			if(empty($tag)){$q = "SELECT MIN(N) FROM images WHERE N > '$current_pic' AND moderation = 1";}
-			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N > '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1 ";}
-		break;
-		case 'prev':
-			if(empty($tag)){$q = "SELECT MAX(N) FROM images WHERE N < '$current_pic' AND moderation = 1";}
-			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N < '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1 ";}
-		break;
-	}
-	$query = mysql_query("$q")or die(mysql_error());
-	$values = mysql_fetch_array($query);
-	return $values[0];
-}
 
 if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 	$tag_id = clean_var($_GET['tag']);
@@ -55,9 +32,15 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 	$count = mysql_num_rows($find_tag_info);
 	if($count!=0){
 		$tag = $_GET['tag'];
-		$tag_info = mysql_fetch_array($find_tag_info);
-	}else{$tag = '';}
-}else{$tag = '';}
+		$tag_lnk = '&tag='.$tag;
+	}else{
+			$tag = '';
+			$tag_lnk='';
+		}
+}else{
+		$tag = '';
+		$tag_lnk='';
+	}
 
 $first_img_id = take_pic_id('first',0,$tag);//take first pic
 $last_img_id = take_pic_id('last',0,$tag);//take last pic
@@ -124,7 +107,6 @@ $img_info=mysql_fetch_array($q);
 			<div id="current_tag">
 				<p>We are looking at:</p>
 					<?php
-						$tag_info; // id ru en
 						$find_tags_info = mysql_query("SELECT * FROM tags")or die(mysql_error());
 						$tag_list = '';
 						if($tag == '') {$tag_list = '<li><a href="index.php">All photos</a></li>'.$tag_list;}
@@ -143,7 +125,9 @@ $img_info=mysql_fetch_array($q);
 			</div>
 			<div id="content">
 				<div id="main_img">
-					<img src="images/<?php echo $img_info["file"]; ?>" alt="<?php echo $img_info["title"]; ?>">
+					<a href="index.php?image=<?php echo take_pic_id('next',$img_N,$tag); echo $tag_lnk;?>">
+						<img src="images/<?php echo $img_info["file"]; ?>" alt="<?php echo $img_info["title"]; ?>">
+					</a>
 				</div>
 				<?php if($auth==true){ include 'admin/update_form.php';} ?>
 			</div>

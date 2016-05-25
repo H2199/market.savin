@@ -22,6 +22,7 @@ switch($_POST["action"]){
 			$N=$_POST["N"];
 			$redirect = "location:../index.php$img_id";
 			
+
 			// upload only 1 file
 			$name = $_FILES['upload']['name'];
 			if ($_FILES['upload']['error'] == 4) {
@@ -80,6 +81,7 @@ switch($_POST["action"]){
 					}
 				}
 			}
+			
 			header("$redirect");
 		}
 		header("$redirect");
@@ -91,7 +93,6 @@ switch($_POST["action"]){
 			$title=$_POST["title"];
 			$description=$_POST["description"];
 			$about=$_POST["about"];
-			$imgage_number = isset($_POST["image"])?$_POST["image"]:'';
 			$N=$_POST["N"];
 			$redirect = "location:../index.php$img_id";
 			$up = "UPDATE `$tablename`  SET `title` = '$title', `about` = '$about', `description` = '$description' WHERE `N` = '$N'";

@@ -131,8 +131,8 @@ tag_checkbox_select($img)
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
 	</head>
 	<body>
-	<div id="order_answer">Thank you for the order placed I will contact you as soon as possible.</div>
-	<div id="order_form">
+	<div id="order_answer" style="display:none;">Thank you for the order placed I will contact you as soon as possible.</div>
+	<div id="order_form" style="display:none;">
 		<form onsubmit="return makeOrder();">
 			<p>Name:</p> <input type="text" name="name">
 			<p>Email:</p> <input type="text" name="email">

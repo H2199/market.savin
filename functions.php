@@ -41,4 +41,27 @@ function tag_checkbox_select($img){//$img = 0; show all
 	}
 	return $tag_select;
 }
+function take_pic_id($pic_place, $current_pic, $tag){
+	switch ($pic_place){ 
+		case 'first':
+			if(empty($tag)){$q = "SELECT MIN(N) FROM images WHERE moderation = 1";}
+			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1";}
+		break;
+		case 'last':
+			if(empty($tag)){$q = "SELECT MAX(N) FROM images WHERE moderation = 1";}
+			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1";}
+		break;
+		case 'next':
+			if(empty($tag)){$q = "SELECT MIN(N) FROM images WHERE N > '$current_pic' AND moderation = 1";}
+			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N > '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1 ";}
+		break;
+		case 'prev':
+			if(empty($tag)){$q = "SELECT MAX(N) FROM images WHERE N < '$current_pic' AND moderation = 1";}
+			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N < '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1 ";}
+		break;
+	}
+	$query = mysql_query("$q")or die(mysql_error());
+	$values = mysql_fetch_array($query);
+	return $values[0];
+}
 ?>

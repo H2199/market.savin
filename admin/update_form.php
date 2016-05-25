@@ -5,7 +5,6 @@ echo '
 		<form action="admin/update.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="N" value='.$img_info["N"].'>
 			<input type="hidden" name="action" value="1">
-			<input type="hidden" name="image" value='.$img_N.'>
 			<a href="admin/exit.php">exit</a>
 			<a href="admin/login.php">login.php</a>
 			<p>Файл:</p>
@@ -17,7 +16,6 @@ echo '
 		<form action="admin/update.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="N" value='.$img_info["N"].'>
 			<input type="hidden" name="action" value="2">
-			<input type="hidden" name="image" value='.$img_N.'>
 			<p>Описание под картинкой:</p>
 			<textarea name="about">'.$img_info["about"].'</textarea>
 			<p>description:</p>
@@ -35,7 +33,6 @@ echo'
 		<form action="admin/update.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="N" value='.$img_info["N"].'>
 			<input type="hidden" name="action" value="3">
-			<input type="hidden" name="image" value='.$img_N.'>
 			<input type="submit" value="Убрать фото">
 		</form>
 	</div>

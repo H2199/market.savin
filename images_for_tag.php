@@ -43,6 +43,14 @@ function show_previews($tag_id, $amount, $all){
 	return $images;
 }
 
+if(isset($_GET['tag'])&&!empty($_GET['tag'])){
+	$tag_id = clean_var($_GET['tag']);
+	$find_tag_info = mysql_query("SELECT id FROM tags WHERE id = '$tag_id' ")or die(mysql_error());
+	$count = mysql_num_rows($find_tag_info);
+	if($count!=0){
+		$tag = $_GET['tag'];
+	}else{$tag = '';}
+}else{$tag = '';}
 
 ?>
 <html>
@@ -55,6 +63,26 @@ function show_previews($tag_id, $amount, $all){
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
 	</head>
 	<body>
+		<div id="current_tag">
+			<p>We are looking at:</p>
+				<?php
+					$tag_info; // id ru en
+					$find_tags_info = mysql_query("SELECT * FROM tags")or die(mysql_error());
+					$tag_list = '';
+					if($tag == '') {$tag_list = '<li><a href="images_for_tag.php">All photos</a></li>'.$tag_list;}
+					while($tags = mysql_fetch_array($find_tags_info)){
+						$first_img_tag_id = take_pic_id('first',0,$tags['id']);
+						if($tags['id'] == $tag){
+							$tag_list = '<li><a href="images_for_tag.php?tag='.$tags['id'].'">'.$tags['en'].'</a></li>'.$tag_list;
+						}else{
+								$tag_list .= '<li><a href="images_for_tag?tag='.$tags['id'].'">'.$tags['en'].'</a></li>';
+							}
+					}
+					if($tag != ''){$tag_list .= '<li><a href="images_for_tag.php">All photos</a></li>';}
+					$tag_list = '<ul>'.$tag_list.'</ul>';
+					echo $tag_list;
+				?>
+		</div>
 		<div id="previews">
 			<?php
 				if(isset($_GET['tag'])){
@@ -67,9 +95,6 @@ function show_previews($tag_id, $amount, $all){
 		</div>
 		<div id="random">
 			<a href="index.php?image=<?php echo random_pic_id();?>">random picture</a>
-		</div>
-		<div id="tags">
-			<?php echo show_tag_list('all', true);?>
 		</div>
 		<div class="share42init"></div>
 		<script type="text/javascript" src="http://so-funny.ru/js/share42/share42.js"></script>

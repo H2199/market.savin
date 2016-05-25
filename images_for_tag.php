@@ -100,14 +100,7 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 		<script type="text/javascript" src="http://so-funny.ru/js/share42/share42.js"></script>
 		<script type="text/javascript">share42('http://so-funny.ru/js/share42/')</script>
 		<div id="footer">
-			<div id="footer-text">
-				<div>
-					<a href="http://www.savin.fi">www.savin.fi</a>
-						<!-- <div id="site">
-							<a href=""></a>
-						</div>-->
-				</div>
-			</div>
+			<a href="about_author.php">ABOUT AUTHOR</a>
 		</div>
 	</body>
 </html>

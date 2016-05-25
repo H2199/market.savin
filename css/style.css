@@ -165,26 +165,18 @@ body {
     text-align: left;
     top: 95%;
     width: 200px;
-}
-#footer div {
-    float: left;
-    padding: 2px;
-    top: 95%;
-}
-#footer {
-    color: #000;
+	color: #000;
     font-family: "Neucha",arial,serif;
-    font-size: 15px;
-    margin: 1%;
+    font-size: 18px;
 }
 #footer a {
     border-right: 1px dashed #d9e0e7;
-    color: #d9e0e7;
+    color: #000;
     text-decoration: none;
 }
 #footer a:hover {
     border-right: 1px dashed #d9e0e7;
-    color: #000;
+    color: #636363;
     text-decoration: none;
 }
 #site {

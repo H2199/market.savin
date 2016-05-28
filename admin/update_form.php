@@ -19,7 +19,7 @@ echo '
 			<p>Описание под картинкой:</p>
 			<textarea name="about">'.$img_info["about"].'</textarea>
 			<p>description:</p>
-			<textarea name="about">'.$img_info["description"].'</textarea>
+			<textarea name="description">'.$img_info["description"].'</textarea>
 			<p>Title+Alt:</p>
 			<textarea name="title">'.$img_info["title"].'</textarea>
 			

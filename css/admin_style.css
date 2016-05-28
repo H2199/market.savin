@@ -2,10 +2,11 @@
 #update_form {
     background-color: white;
     border: 1px solid #ddd;
-    left: 100px;
+    left: -320px;
+    margin-left: 0;
     padding: 10px 20px;
-    position: fixed;
-    top: 44px;
+    position: absolute;
+    top: -48px;
     width: 300px;
     z-index: 999;
 }

@@ -21,14 +21,14 @@ if($session_pwd!=$adm_pwd || $session_login!=$adm_login){
 	}else{
 			$_SESSION['paswd']=$_POST['paswd'];
 			$_SESSION['login']=$_POST['login'];
-			echo'<a href="../index.php">MAIN</a><br>';
+			echo'<a href="../gallery.php">MAIN</a><br>';
 			echo'<a href="moderation.php">Moderation</a><br>';
 			echo '<a href="upload.php">Upload image</a><br>';
 			echo '<a href="tag_editor.php">TAG editor</a><br>';
 			echo '<a href="exit.php">exit</a>';
 		}
 }else{
-		echo'<a href="../index.php">MAIN</a><br>';
+		echo'<a href="../gallery.php">MAIN</a><br>';
 		echo'<a href="moderation.php">Moderation</a><br>';
 		echo '<a href="upload.php">Upload image</a><br>';
 		echo '<a href="tag_editor.php">TAG editor</a><br>';

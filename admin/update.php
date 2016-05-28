@@ -20,7 +20,7 @@ switch($_POST["action"]){
 			$path = "../images/"; // Upload directory
 			$small_img_path = "../small_images/";
 			$N=$_POST["N"];
-			$redirect = "location:../index.php$img_id";
+			$redirect = "location:../gallery.php$img_id";
 			
 
 			// upload only 1 file
@@ -64,17 +64,17 @@ switch($_POST["action"]){
 						//Make preview for tag_search.php
 						if($width_i>$height_i){
 							//image is horizontal
-							$margin = ($width_i-$height_i)/2;
+							$margin = round(($width_i-$height_i)/2);
 							crop($path.$filename, $small_img_path.$filename, array($margin, 0, $height_i, $height_i),false); //square; each side equal to height size
 						}elseif($width_i<$height_i){
 								//image is vertical
-								$margin = ($height_i-$width_i)/2;
+								$margin = round(($height_i-$width_i)/2);
 								crop($path.$filename, $small_img_path.$filename, array(0, $margin, $width_i, $width_i),false);
 							}else{
-									resize($path.$filename, $small_img_path.$filename, 100, 100, true);
+									resize($path.$filename, $small_img_path.$filename, 200, 200, false);
 								}
 						if($height_i>=200 && $width_i>=200){
-							resize($small_img_path.$filename, $small_img_path.$filename, 200, 200);
+							resize($small_img_path.$filename, $small_img_path.$filename, 200, 200, false);
 						}
 						
 						header("$redirect");
@@ -94,7 +94,7 @@ switch($_POST["action"]){
 			$description=$_POST["description"];
 			$about=$_POST["about"];
 			$N=$_POST["N"];
-			$redirect = "location:../index.php$img_id";
+			$redirect = "location:../gallery.php$img_id";
 			$up = "UPDATE `$tablename`  SET `title` = '$title', `about` = '$about', `description` = '$description' WHERE `N` = '$N'";
 			mysql_query($up)or die(mysql_error());
 
@@ -133,6 +133,17 @@ switch($_POST["action"]){
 			mysql_query($up)or die(mysql_error());
 			header("location:../images_for_tag.php");
 		}
+	break;
+	case 4:
+		if(isset($_POST["title"])||isset($_POST["description"])||isset($_POST["text"])||isset($_POST["tag_id"])){
+			$title = $_POST["title"];
+			$description = $_POST["description"];
+			$text = $_POST["text"];
+			$tag_id = $_POST["tag_id"];
+			$up = "UPDATE `tags`  SET  `en_title` = '$title', `en_description` = '$description', `en_text` = '$text' WHERE `id` = '$tag_id'";
+			mysql_query($up)or die(mysql_error());
+			header("location:../images_for_tag.php?tag=$tag_id");
+		}else{header("location:../image_for_tag.php?tag=$tag_id");}
 	break;
 }
 ?>

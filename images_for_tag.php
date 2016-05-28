@@ -37,7 +37,7 @@ function show_previews($tag_id, $amount, $all){
 			shuffle($files);
 			$tag_id = $tag_id==0  ?  ''  :  '&tag='.$tag_id.'';
 			for ($i = 0; $i <$count; $i++) {
-				$images .= '<a href="index.php?image='.$files[$i]['N'].$tag_id.'"><img src="small_images/'.$files[$i]['file'].'"></a>';
+				$images .= '<a href="gallery.php?image='.$files[$i]['N'].$tag_id.'"><img src="small_images/'.$files[$i]['file'].'"></a>';
 			}
 		}
 	return $images;
@@ -45,24 +45,40 @@ function show_previews($tag_id, $amount, $all){
 
 if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 	$tag_id = clean_var($_GET['tag']);
-	$find_tag_info = mysql_query("SELECT id FROM tags WHERE id = '$tag_id' ")or die(mysql_error());
+	$find_tag_info = mysql_query("SELECT * FROM tags WHERE id = '$tag_id' ")or die(mysql_error());
 	$count = mysql_num_rows($find_tag_info);
 	if($count!=0){
+		$current_tag_info = mysql_fetch_array($find_tag_info);
 		$tag = $_GET['tag'];
-	}else{$tag = '';}
-}else{$tag = '';}
+	}else{
+			$tag = '';
+		}
+}else{
+		$tag = '';
+	}
 
 ?>
 <html>
 	<head>
 		<title>
-		 Картинка №1
+			<?php
+				if($tag!=''){echo $current_tag_info['en_title'];}
+				else{echo'';} 
+			?>
 		</title>
+		<meta name="description" content="
+			<?php
+				if($tag!=''){echo $current_tag_info['en_description'];}
+				else{echo'';}
+			?>
+		" >
+		<?php if($auth==true){echo'<link type="text/css" rel="stylesheet" media="all" href="css/admin_style.css">';}?>
 		<link type="text/css" rel="stylesheet" media="all" href="css/style.css" />
 		<script type="text/javascript" src="/js/resize.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
 	</head>
 	<body>
+		<?php if($auth == false){include 'yandex_metrika.php';}?>
 		<div id="current_tag">
 			<p>We are looking at:</p>
 				<?php
@@ -75,7 +91,7 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 						if($tags['id'] == $tag){
 							$tag_list = '<li><a href="images_for_tag.php?tag='.$tags['id'].'">'.$tags['en'].'</a></li>'.$tag_list;
 						}else{
-								$tag_list .= '<li><a href="images_for_tag?tag='.$tags['id'].'">'.$tags['en'].'</a></li>';
+								$tag_list .= '<li><a href="images_for_tag.php?tag='.$tags['id'].'">'.$tags['en'].'</a></li>';
 							}
 					}
 					if($tag != ''){$tag_list .= '<li><a href="images_for_tag.php">All photos</a></li>';}
@@ -93,14 +109,23 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 					}
 			?>
 		</div>
-		<div id="random">
-			<a href="index.php?image=<?php echo random_pic_id();?>">random picture</a>
+		<?php if($auth==true){ include 'admin/update_tag_form.php';} ?>
+		<!--
+			<div id="random">
+				<a href="gallery.php?image=<?php echo random_pic_id();?>">random picture</a>
+			</div>
+		-->
+		<div id="text_on_tags_place">
+			<?php
+				if($tag!=''){echo $current_tag_info['en_text'];}
+				else{echo'';}
+			?>
 		</div>
-		<div class="share42init"></div>
+		<div class="share42init" onclick="javascript:yaCounter37608890.reachGoal('tag_page_share');"></div>
 		<script type="text/javascript" src="http://so-funny.ru/js/share42/share42.js"></script>
 		<script type="text/javascript">share42('http://so-funny.ru/js/share42/')</script>
 		<div id="footer">
-			<a href="about_author.php">ABOUT AUTHOR</a>
+			<a href="index.php">ABOUT AUTHOR</a>
 		</div>
 	</body>
 </html>

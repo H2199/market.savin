@@ -78,17 +78,18 @@ function show_upload_form(){
 								//Make preview for tag_search.php
 								if($width_i>$height_i){
 									//image is horizontal
-									$margin = ($width_i-$height_i)/2;
+									$margin = round(($width_i-$height_i)/2);
 									crop($path.$filename, $small_img_path.$filename, array($margin, 0, $height_i, $height_i),false); //square; each side equal to height size
 								}elseif($width_i<$height_i){
 										//image is vertical
-										$margin = ($height_i-$width_i)/2;
+										$margin = round(($height_i-$width_i)/2);
 										crop($path.$filename, $small_img_path.$filename, array(0, $margin, $width_i, $width_i),false);
 									}else{
-											resize($path.$filename, $small_img_path.$filename, 100, 100, true);
+											resize($path.$filename, $small_img_path.$filename, 200, 200, false);
 										}
 								if($height_i>=200 && $width_i>=200){
-									resize($small_img_path.$filename, $small_img_path.$filename, 200, 200);
+									
+									resize($small_img_path.$filename, $small_img_path.$filename, 200, 200, false);
 								}
 							}
 						}

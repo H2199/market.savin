@@ -9,16 +9,69 @@ body {
     position: relative;
     width: 1000px;
 }
+#menu_button {
+    cursor: pointer;
+    height: 34px;
+    margin: 4px 0 0 42px;
+    overflow: hidden;
+    position: fixed;
+    top: 20px;
+    width: 60px;
+    z-index: 3;
+}
+#menu_button:hover {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    height: auto;
+    margin-left: 28px;
+    padding: 10px 0 0 13px;
+    top: 12px;
+    width: 210px;
+}
+#menu_button .line {
+    border: 4px solid #c1c1c1;
+    border-radius: 4px;
+    height: 0;
+    margin-bottom: 5px;
+    position: relative;
+    width: 50px;
+    z-index: 5;
+}
+#menu {
+    margin-left: -13px;
+    margin-top: -5px;
+    padding-right: 12px;
+    z-index: 4;
+}
+#menu ul {
+    margin-bottom: 5px;
+    margin-left: -30px;
+}
+#menu li {
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    list-style: outside none none;
+    padding: 5px;
+    text-transform: uppercase;
+}
+#menu li:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+#menu a {
+    color: #000;
+    text-decoration: none;
+}
 #current_tag {
     background-color: #fff;
     border-color: #ddd;
     border-style: solid;
     border-width: 1px 1px 0;
     height: 50px;
-    left: 149px;
+    left: 15%;
     position: absolute;
-    top: -50px;
-    width: 700px;
+    top: 30px;
+    width: 70%;
 }
 #current_tag p {
     float: left;
@@ -33,6 +86,9 @@ body {
     color: #ff6523;
     cursor: pointer;
     font-weight: 900;
+}
+#current_tag a:visited {
+    color: #dd551f;
 }
 #current_tag ul {
     background-color: white;
@@ -57,8 +113,9 @@ body {
 #content {
     background-color: #fff;
     border: 1px solid #ddd;
+    float: left;
     height: 510px;
-    margin: 80px auto 15px;
+    margin: 80px 0 15px 15%;
     padding-bottom: 70px;
     width: 70%;
 }
@@ -158,18 +215,19 @@ body {
     color: #000;
 }
 #footer {
+    color: #000;
     float: left;
+    font-family: "Neucha",arial,serif;
+    font-size: 18px;
     position: fixed;
     text-align: left;
     top: 95%;
     width: 200px;
-	color: #000;
-    font-family: "Neucha",arial,serif;
-    font-size: 18px;
 }
 #footer a {
     border-right: 1px dashed #d9e0e7;
     color: #000;
+    font-weight: 900;
     text-decoration: none;
 }
 #footer a:hover {
@@ -215,33 +273,32 @@ body {
 #imgtext {
     background-color: #fff;
     border: 1px solid #ddd;
+    color: #000;
     float: left;
+    font-family: "Neucha",arial,serif;
+    font-size: 16px;
     height: auto;
     margin: 0 auto 50px 22%;
     padding: 20px 30px;
     position: relative;
-    text-align: left;
-    width: 500px;
-	color: #000;
-    font-family: "Neucha",arial,serif;
-    font-size: 16px;
     text-align: center;
+    width: 500px;
 }
-#imgtext p{
-	float: left;
+#imgtext p {
+    float: left;
     font-size: 18px;
     margin: 0;
     text-align: justify;
-    width: 45%;
+    width: 40%;
 }
-#imgtext table{
-	float: left;
+#imgtext table {
+    float: left;
     font-family: arial;
     font-size: 16px;
     width: 60%;
 }
-#imgtext td{
-	padding:1px 10px 1px 0px;
+#imgtext td {
+    padding: 1px 10px 1px 0;
 }
 .left {
     float: left;
@@ -250,11 +307,11 @@ body {
     position: absolute;
     top: 230px;
 }
-.left:hover{
-	opacity:1;
+.left:hover {
+    opacity: 1;
 }
-.left img{
-	height: 70px;
+.left img {
+    height: 70px;
 }
 .right {
     float: right;
@@ -263,11 +320,17 @@ body {
     right: 50px;
     top: 230px;
 }
-.right:hover{
-	opacity:1;
+.right:hover {
+    opacity: 1;
 }
-.right img{
-	height: 70px;
+.right img {
+    height: 70px;
+}
+#share_42_author_page {
+    float: right;
+    margin-right: -224px;
+    position: relative;
+    width: 38px;
 }
 #share42 {
     background: #fff none repeat scroll 0 0;
@@ -315,8 +378,8 @@ body {
     color: #ff6523;
     cursor: pointer;
 }
-#text_on_tags_place{
-	background-color: white;
+#text_on_tags_place {
+    background-color: white;
     border: 1px solid #ddd;
     border-radius: 4px;
     float: left;
@@ -359,31 +422,45 @@ body {
     text-decoration: none;
 }
 #previews {
+    background-color: #fff;
     border: 1px solid #ddd;
-    margin: 80px auto 15px;
+    float: left;
+    margin: 80px auto 15px 15%;
     min-height: 510px;
     padding-bottom: 20px;
     width: 70%;
-	background-color: #fff;
+}
+#previews .price {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #000;
+    font-size: 22px;
+    margin-left: 153px;
+    margin-top: -38px;
+    position: absolute;
+    text-align: center;
+    width: 52px;
+    z-index: 0;
 }
 #previews a {
-    padding: 3px;
+    float: left;
+    padding: 0 7px;
 }
 #previews img {
-    margin-left: 20px;
+    border: 5px solid #f7f7f7;
+    margin-left: 8px;
     margin-top: 15px;
 }
-#previews img:hover{
-	-webkit-filter: contrast(140%);
-	filter: contrast(140%);
+#previews img:hover {
+    border: 5px solid #cecece;
 }
 #author_page {
+    background-color: #fff;
     border: 1px solid #ddd;
-    height: 450px;
+    height: 400px;
     margin: 80px auto 15px;
     padding-bottom: 70px;
     width: 90%;
-	background-color:#fff;
 }
 #about_author {
 }
@@ -395,41 +472,42 @@ body {
 }
 #about_author p {
     float: left;
-    font-family: neucha;
-    font-size: 19px;
+    font-family: "Neucha";
+    font-size: 20px;
     margin-left: 20px;
     margin-top: -6px;
     text-align: justify;
-    width: 320px;
+    width: 390px;
 }
 #about_author img {
     float: right;
     margin-bottom: 20px;
     margin-right: 20px;
-    width: 500px;
+    width: 430px;
 }
 #about_author button {
     background-color: #6e9dce;
     border: 1px solid #ddd;
-    float: left;
+    float: right;
+    font-family: arial;
     font-size: 19px;
     height: 38px;
-    margin-left: 170px;
+    margin-right: 12%;
     margin-top: 0;
     width: 250px;
-	font-family: arial;
 }
 #about_author button:hover {
     background-color: #5164d1;
     cursor: pointer;
 }
-.author_page_links{
+.author_page_links {
     font-family: arial;
-	font-size:18px;
+    font-size: 18px;
+    margin: 0;
 }
 .author_page_links p {
     float: left;
-    font-weight: 900;
+    font-weight: 600;
     margin: 0 0 0 10px;
     padding-top: 7px;
 }
@@ -462,6 +540,54 @@ body {
     cursor: pointer;
     font-weight: 900;
 }
+#index_previews {
+    height: 160px;
+    margin: 0 auto 10px;
+    width: 90%;
+}
+#index_previews .price {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #000;
+    font-size: 21px;
+    margin-left: 98px;
+    margin-top: -35px;
+    position: relative;
+    text-align: center;
+    width: 52px;
+    z-index: 10;
+}
+#index_previews .more {
+    background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
+    border: 5px solid #f7f7f7;
+    color: #fff;
+    font-size: 21px;
+    height: 94px;
+    margin-left: 0;
+    margin-top: -153px;
+    padding-top: 56px;
+    position: absolute;
+    text-align: center;
+    width: 149px;
+    z-index: 11;
+}
+#index_previews .more:hover {
+	background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+    border: 5px solid #cecece;
+}
+#index_previews a {
+    float: left;
+    margin-left: 17px;
+    text-decoration: none;
+}
+#index_previews img {
+    border: 5px solid #f7f7f7;
+    width: 150px;
+    z-index: 5;
+}
+#index_previews img:hover {
+    border: 5px solid #cecece;
+}
 #order_form {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -473,7 +599,7 @@ body {
     z-index: 3;
 }
 #order_form form {
-    padding: 40px 90px 0 30px
+    padding: 40px 90px 0 30px;
 }
 #order_form p {
     float: left;
@@ -509,18 +635,18 @@ body {
     font-weight: 900;
 }
 #order_form_sumbit_button {
+    background-color: #6e9dce;
+    border: 1px solid #ddd;
+    font-family: arial;
     height: 36px;
     margin-top: 11px;
-	background-color: #6e9dce;
-	border: 1px solid #ddd;
-	font-family: arial;
 }
 #order_form_sumbit_button:hover {
-    cursor:pointer;
-	background-color: #5164d1;
+    background-color: #5164d1;
+    cursor: pointer;
 }
-#order_answer, #order_error, #order_error2{
-	background-color: #fff;
+#order_answer, #order_error, #order_error2 {
+    background-color: #fff;
     border: 1px solid #ddd;
     font-size: 24px;
     height: 110px;
@@ -530,11 +656,12 @@ body {
     position: fixed;
     text-align: center;
     width: 500px;
-	z-index:3;
+    z-index: 3;
 }
-#order_button button{
-	background-color: #6e9dce;
+#order_button button {
+    background-color: #6e9dce;
     border: 1px solid #ddd;
+    font-family: arial;
     font-size: 16px;
     height: 37px;
     margin-left: 370px;
@@ -543,14 +670,13 @@ body {
     text-align: center;
     text-transform: uppercase;
     width: 260px;
-	font-family: arial;
 }
-#order_button button:hover{
-	background-color: #5164d1;
-	cursor:pointer;
+#order_button button:hover {
+    background-color: #5164d1;
+    cursor: pointer;
 }
-#order_button a{
-	color: #000;
+#order_button a {
+    color: #000;
     height: 29px;
     text-decoration: none;
 }

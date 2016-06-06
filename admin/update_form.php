@@ -22,7 +22,21 @@ echo '
 			<textarea name="description">'.$img_info["description"].'</textarea>
 			<p>Title+Alt:</p>
 			<textarea name="title">'.$img_info["title"].'</textarea>
-			
+				<p>made_of:</p>
+				<input type="text" name="made_of" value="'.$img_info["made_of"].'">
+				<p>size:</p>
+				<input type="text" name="size" value="'.$img_info["size"].'">
+				<p>price:</p>
+				<input type="text" name="price" value="'.$img_info["price"].'">
+				<p>in_stock:</p>
+				<input type="text" name="in_stock" value="'.$img_info["in_stock"].'">
+				<p>time_for_production:</p>
+				<input type="text" name="time_for_production" value="'.$img_info["time_for_production"].'">
+				<p>made_in:</p>
+				<input type="text" name="made_in" value="'.$img_info["made_in"].'">
+				<p>made_by:</p>
+				<input type="text" name="made_by" value="'.$img_info["made_by"].'">
+
 ';	
 				echo tag_checkbox_select($img_info["N"]);
 echo' 
@@ -32,6 +46,7 @@ echo'
 		</form>
 		<form action="admin/update.php" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="N" value='.$img_info["N"].'>
+			<input type="hidden" name="prev" value='.$prev_img_id.'>
 			<input type="hidden" name="action" value="3">
 			<input type="submit" value="Убрать фото">
 		</form>

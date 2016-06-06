@@ -31,7 +31,9 @@ if(isset($_GET['action'])){
 			$tablename="tags";
 			foreach($_POST['tags'] as $tag){
 				$del = "DELETE FROM `$tablename` WHERE id = '$tag'"; 
-				mysql_query($del)or die(mysql_error());	
+				mysql_query($del)or die(mysql_error());
+				$del2 = "DELETE FROM `tag_relation` WHERE tag_id = '$tag'"; 
+				mysql_query($del2)or die(mysql_error());	
 				header("location:tag_editor.php");
 			}
 		break;

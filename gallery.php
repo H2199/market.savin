@@ -47,9 +47,9 @@ $last_img_id = take_pic_id('last',0,$tag);//take last pic
 
 if(isset($_GET['image'])&&!empty($_GET['image'])){
 	$img_N = clean_var($_GET['image']);
-	$find_image = mysql_query("SELECT COUNT(*) FROM images WHERE moderation = 1 AND N = '$img_N' ")or die(mysql_error());
+	$find_image = mysql_query("SELECT N FROM images WHERE moderation = '1' AND N = '$img_N' ")or die(mysql_error());
 	$count = mysql_num_rows($find_image);
-	if($count==0){ header('Location: gallery.php'); }
+	if($count==0){ header('Location: gallery.php');}
 }else{
 		$img_N = $first_img_id;
 	}
@@ -58,25 +58,23 @@ if(isset($_GET['image'])&&!empty($_GET['image'])){
 //next and prev link generator
 switch (true){ 
 	case ($img_N == $first_img_id && $img_N == $last_img_id): //Only one image is available
-		make_next_prev_link($img_N, $img_N, $tag);
+		$prev_img_id = $img_N;
+		$next_img_id = $img_N;
 	break;
-	
 	case ($img_N == $first_img_id): // First image case
 		$next_img_id = take_pic_id('next',$img_N,$tag);
-		make_next_prev_link($last_img_id, $next_img_id, $tag);
+		$prev_img_id = $last_img_id;
 	break;
-	
 	case ($img_N == $last_img_id): // Last image case
 		$prev_img_id = take_pic_id('prev',$img_N,$tag);
-		make_next_prev_link($prev_img_id, $first_img_id, $tag);
+		$next_img_id = $first_img_id;
 	break;
-	
 	case ($img_N<$last_img_id and $img_N>$first_img_id): // Somewhere in between
 		$next_img_id = take_pic_id('next',$img_N,$tag);
 		$prev_img_id = take_pic_id('prev',$img_N,$tag);
-		make_next_prev_link($prev_img_id, $next_img_id, $tag);
 	break;
 }
+make_next_prev_link($prev_img_id, $next_img_id, $tag);
 
 //TAKE INFO ABOUT pic on the page
 $q = mysql_query("SELECT * FROM images WHERE moderation = 1 AND N = '$img_N' ", $lnk)
@@ -89,14 +87,28 @@ $img_info=mysql_fetch_array($q);
 		<?php if($auth==true){echo'<link type="text/css" rel="stylesheet" media="all" href="css/admin_style.css">';}?>
 		<meta name="description" content="Photo №<?php echo $img.$img_info['description'];?> " >
 		<title> <?php echo $img_info["title"]?> </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<!--<script type="text/javascript" src="/js/resize.js"></script>-->
+		<link href="css/lightbox.css" = type="text/css" rel="stylesheet" media="all" />
 		<link type="text/css" rel="stylesheet" media="all" href="css/style.css">
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>
-		<div id="header">
+		<div id="menu_button">
+			<div class="line"></div>
+			<div class="line"></div>
+			<div class="line"></div>
+			<div id="menu">
+				<ul>
+					<a href="images_for_tag.php" ><li>Gallery: show all</li></a>
+					<a href="gallery.php" ><li>Gallery: one by one</li></a>
+					<a href="images_for_tag.php?tag=32" ><li>Exhibition participation</li></a>
+					<a href="index.php" ><li>About author</li></a>
+				</ul>
+			</div>
 		</div>
+		
 			<div class="left">
 				<?php echo $prev_link; ?>
 			</div>
@@ -110,23 +122,23 @@ $img_info=mysql_fetch_array($q);
 					<?php
 						$find_tags_info = mysql_query("SELECT * FROM tags")or die(mysql_error());
 						$tag_list = '';
-						if($tag == '') {$tag_list = '<li><a href="gallery.php">All photos</a></li>'.$tag_list;}
+						if($tag == '') {$tag_list = '<li>All photos</li>'.$tag_list;}
 						while($tags = mysql_fetch_array($find_tags_info)){
-							$first_img_tag_id = take_pic_id('first',0,$tags['id']);
+							//$first_img_tag_id = take_pic_id('first',0,$tags['id']);
 							if($tags['id'] == $tag){
-								$tag_list = '<li><a href="gallery.php?image='.$img_N.'&tag='.$tags['id'].'">'.$tags['en'].'</a></li>'.$tag_list;
+								$tag_list = '<li>'.$tags['en'].'</li>'.$tag_list;
 							}else{
-									$tag_list .= '<li><a href="gallery.php?image='.$first_img_tag_id.'&tag='.$tags['id'].'">'.$tags['en'].'</a></li>';
+									$tag_list .= '<li><a href="images_for_tag.php?tag='.$tags['id'].'">'.$tags['en'].'</a></li>';
 								}
 						}
-						if($tag != ''){$tag_list .= '<li><a href="gallery.php">All photos</a></li>';}
+						if($tag != ''){$tag_list .= '<li><a href="images_for_tag.php">All photos</a></li>';}
 						$tag_list = '<ul>'.$tag_list.'</ul>';
 						echo $tag_list;
 					?>
 			</div>
 			<div id="content">
 				<div id="main_img">
-					<a href="gallery.php?image=<?php echo take_pic_id('next',$img_N,$tag); echo $tag_lnk;?>">
+					<a data-lightbox="full" href="images/<?php echo $img_info["file"]; ?>">
 						<img src="images/<?php echo $img_info["file"]; ?>" alt="<?php echo $img_info["title"]; ?>">
 					</a>
 				</div>
@@ -148,12 +160,31 @@ $img_info=mysql_fetch_array($q);
 		</div>
 		<div id="imgtext">
 			<?php
-				echo $img_info["about"];
+				if($img_info["made_of"]!=''){
+					echo'
+						<table>
+							<tbody>
+								<tr><td><b>Made of:</b></td><td>'.$img_info["made_of"].'</td></tr>
+								<tr><td><b>Size:</b></td><td>'.$img_info["size"].'</td></tr>
+								<tr><td><b>Price:</b></td><td>'.$img_info["price"].' euro</td></tr>
+								<tr><td><b>In stock:</b></td><td>'.$img_info["in_stock"].'</td></tr>
+								
+					';
+					if($img_info["in_stock"] !="YES"){echo'<tr><td><b>Time spent:</b></td><td>'.$img_info["time_for_production"].'</td></tr>';}
+					echo'
+								<tr><td><b>Made in:</b></td><td>'.$img_info["made_in"].'</td></tr>
+								<tr><td><b>Made by:</b></td><td>'.$img_info["made_by"].'</td></tr>
+							</tbody>
+						</table>
+					';
+				}
 			?>
+			<?php echo $img_info["about"]; ?>
 		</div>
 		<div id="footer">
 			<a href="index.php">ABOUT AUTHOR</a>
 		</div>
+		<script src="/js/lightbox.js"type="text/javascript" ></script>
 	</body>
 </html>
 

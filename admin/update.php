@@ -94,8 +94,22 @@ switch($_POST["action"]){
 			$description=$_POST["description"];
 			$about=$_POST["about"];
 			$N=$_POST["N"];
+				$made_of = $_POST["made_of"];
+				$size = $_POST["size"];
+				$price = $_POST["price"];
+				$in_stock = $_POST["in_stock"];
+				$time_for_production =$_POST["time_for_production"];
+				$made_in = $_POST["made_in"];
+				$made_by = $_POST["made_by"];
+
+			
 			$redirect = "location:../gallery.php$img_id";
-			$up = "UPDATE `$tablename`  SET `title` = '$title', `about` = '$about', `description` = '$description' WHERE `N` = '$N'";
+			$up =
+			"UPDATE `$tablename`  
+			SET `title` = '$title', `about` = '$about', `description` = '$description'
+			, `made_of` = '$made_of', `size` = '$size', `price` = '$price', `in_stock` = '$in_stock', `time_for_production` = '$time_for_production'
+			, `made_in` = '$made_in', `made_by` = '$made_by'
+			WHERE `N` = '$N'";
 			mysql_query($up)or die(mysql_error());
 
 			$query=mysql_query("SELECT * FROM tags")or die(mysql_error());
@@ -129,9 +143,10 @@ switch($_POST["action"]){
 		if (isset($_POST["N"]) && !empty($_POST["N"])){
 			$tablename="images";
 			$N=$_POST["N"];
+			$prev=$_POST["prev"];
 			$up = "UPDATE `images`  SET  `moderation` = '2' WHERE `N` = '$N'";
 			mysql_query($up)or die(mysql_error());
-			header("location:../images_for_tag.php");
+			header("location:../gallery.php?image=$prev");
 		}
 	break;
 	case 4:

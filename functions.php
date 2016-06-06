@@ -45,23 +45,72 @@ function take_pic_id($pic_place, $current_pic, $tag){
 	switch ($pic_place){ 
 		case 'first':
 			if(empty($tag)){$q = "SELECT MIN(N) FROM images WHERE moderation = 1";}
-			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1";}
+			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = '1'";}
 		break;
 		case 'last':
 			if(empty($tag)){$q = "SELECT MAX(N) FROM images WHERE moderation = 1";}
-			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1";}
+			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = '1'";}
 		break;
 		case 'next':
 			if(empty($tag)){$q = "SELECT MIN(N) FROM images WHERE N > '$current_pic' AND moderation = 1";}
-			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N > '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1 ";}
+			else{$q = "SELECT MIN(images.N) FROM images, tag_relation WHERE images.N > '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = '1' ";}
 		break;
 		case 'prev':
 			if(empty($tag)){$q = "SELECT MAX(N) FROM images WHERE N < '$current_pic' AND moderation = 1";}
-			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N < '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = 1 ";}
+			else{$q = "SELECT MAX(images.N) FROM images, tag_relation WHERE images.N < '$current_pic' AND images.N = tag_relation.image_id AND tag_relation.tag_id = '$tag' AND images.moderation = '1' ";}
 		break;
 	}
 	$query = mysql_query("$q")or die(mysql_error());
 	$values = mysql_fetch_array($query);
 	return $values[0];
+}
+function show_previews($tag_id, $amount, $all){
+	$images = '';
+	if($all == true){
+		$query = "SELECT N, file, price FROM images WHERE moderation = '1' LIMIT 0, $amount ";
+	}else{
+			$query = "SELECT images.N, images.file, images.price FROM images, tag_relation WHERE tag_relation.image_id = images.N AND tag_relation.tag_id = '$tag_id' AND images.moderation = '1'";
+		}
+	$q = mysql_query($query)or die(mysql_error());
+	$count = mysql_num_rows($q);
+	if($count==0){
+		$images .='No images to show';
+	}else{
+			$n =1;
+			while ($f = mysql_fetch_array($q)){
+				$files[$n]['N'] = $f[0];
+				$files[$n]['file'] = $f[1];
+				$files[$n]['price'] = $f[2];
+				$n++;
+			}
+			//shuffle($files); show previews in random order
+			$tag_id = $tag_id==0  ?  ''  :  '&tag='.$tag_id.'';
+			for ($i = 1; $i <=$count; $i++) {//start at 0 if random and 1 if not
+				//$images .= '<a data-lightbox="previews" href="images/'.$files[$i]['file'].'"><img src="small_images/'.$files[$i]['file'].'"></a>';
+				$images .= '<a href="gallery.php?image='.$files[$i]['N'].$tag_id.'"><img src="small_images/'.$files[$i]['file'].'">';
+				if($files[$i]['price']!=''){$images .= '<div class="price">€'.$files[$i]['price'].'</div>';}
+				$images .= '</a>';
+			}
+		}
+	return $images;
+}
+function show_exact_previews ($id_array, $more){
+	if(!is_array($id_array)){return 'whut';}
+	$previews = '';
+	$end_value = end($id_array);
+	foreach ($id_array as $value){
+		$query = "SELECT N, file, price FROM images WHERE N = '$value' AND images.moderation = '1'";
+		$q = mysql_query($query)or die(mysql_error());
+		$f = mysql_fetch_array($q);
+		
+		//LAST HREF LINK
+		if($value === $end_value && $more){$previews .= '<a href="images_for_tag.php"><img src="small_images/'.$f['file'].'">';}
+		else{$previews .= '<a href="gallery.php?image='.$f['N'].'"><img src="small_images/'.$f['file'].'">';}
+		if($f['price']!=''){$previews .= '<div class="price">€'.$f['price'].'</div>';}
+		//LAST GREY PIC
+		if($value === $end_value && $more){$previews .= '<div class="more">More..</div>';}
+		$previews .= '</a>';
+	}
+	return $previews;
 }
 ?>

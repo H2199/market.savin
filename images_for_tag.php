@@ -9,12 +9,6 @@ $session_login =  isset($_SESSION['login'])	? $_SESSION['login'] : '';
 $auth = ($session_pwd==$adm_pwd && $session_login==$adm_login)? true : false;
 
 require 'functions.php';
-/**
-clean_var($value)
-random_pic_id()
-show_tag_list($img)
-tag_checkbox_select($img)
-**/
 
 if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 	$tag_id = clean_var($_GET['tag']);
@@ -92,9 +86,7 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 				if(isset($_GET['tag'])){
 					$tag = clean_var($_GET['tag']);
 					echo show_previews($tag, 100, false);
-				}else{
-						echo show_previews(0, 100, true);
-					}
+				}else{echo show_previews(0, 100, true);}
 			?>
 		</div>
 		<?php if($auth==true){ include 'admin/update_tag_form.php';} ?>

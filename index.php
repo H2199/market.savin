@@ -9,12 +9,7 @@ $session_login =  isset($_SESSION['login'])	? $_SESSION['login'] : '';
 $auth = ($session_pwd==$adm_pwd && $session_login==$adm_login)? true : false;
 
 require 'functions.php';
-/**
-clean_var($value)
-random_pic_id()
-show_tag_list($img)
-tag_checkbox_select($img)
-**/
+
 ?>
 <html>
 	<head>

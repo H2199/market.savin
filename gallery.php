@@ -11,21 +11,6 @@ $auth = ($session_pwd==$adm_pwd && $session_login==$adm_login)? true : false;
 
 require 'functions.php';
 
-/**
-clean_var($value)
-random_pic_id()
-show_tag_list($img)
-tag_checkbox_select($img)
-**/
-
-function make_next_prev_link($prev, $next, $tag_id){
-	global $prev_link;
-	global $next_link;
-	if(!empty($tag_id)){$tag_lnk = '&tag='.$tag_id;}else{$tag_lnk='';}
-	$prev_link='<a href="gallery.php?image='.$prev.$tag_lnk.'"><img src="img/arrow/al'.rand(1,8).'.png" alt="" border="0"></a>'; 
-	$next_link ='<a href="gallery.php?image='.$next.$tag_lnk.'"><img src="img/arrow/ar'.rand(1,8).'.png" alt="" border="0"></a>';
-}
-
 if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 	$tag_id = clean_var($_GET['tag']);
 	$find_tag_info = mysql_query("SELECT id FROM tags WHERE id = '$tag_id' ")or die(mysql_error());

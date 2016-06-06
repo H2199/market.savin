@@ -113,4 +113,11 @@ function show_exact_previews ($id_array, $more){
 	}
 	return $previews;
 }
+function make_next_prev_link($prev, $next, $tag_id){
+	global $prev_link;
+	global $next_link;
+	if(!empty($tag_id)){$tag_lnk = '&tag='.$tag_id;}else{$tag_lnk='';}
+	$prev_link='<a href="gallery.php?image='.$prev.$tag_lnk.'"><img src="img/arrow/al'.rand(1,8).'.png" alt="" border="0"></a>'; 
+	$next_link ='<a href="gallery.php?image='.$next.$tag_lnk.'"><img src="img/arrow/ar'.rand(1,8).'.png" alt="" border="0"></a>';
+}
 ?>

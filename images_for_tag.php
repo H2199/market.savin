@@ -43,8 +43,11 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 		<link href="css/lightbox.css" = type="text/css" rel="stylesheet" media="all" />
 		<link href="css/style.css" = type="text/css" rel="stylesheet" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/> 
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="/js/resize.js" type="text/javascript" ></script>
+		
 	</head>
 	<body>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>

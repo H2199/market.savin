@@ -70,13 +70,15 @@ $img_info=mysql_fetch_array($q);
 <html lang="ru">
 	<head>
 		<?php if($auth==true){echo'<link type="text/css" rel="stylesheet" media="all" href="css/admin_style.css">';}?>
-		<meta name="description" content="Photo №<?php echo $img.$img_info['description'];?> " >
+		<meta name="description" content="Photo №<?php echo $img_N.$img_info['description'];?> " >
 		<title> <?php echo $img_info["title"]?> </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<!--<script type="text/javascript" src="/js/resize.js"></script>-->
 		<link href="css/lightbox.css" = type="text/css" rel="stylesheet" media="all" />
 		<link type="text/css" rel="stylesheet" media="all" href="css/style.css">
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/> 
+
 	</head>
 	<body>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>

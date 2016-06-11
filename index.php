@@ -20,6 +20,8 @@ require 'functions.php';
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<script src="js/index_form.js" type="text/javascript"></script>
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/> 
+
 	</head>
 	<body>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>

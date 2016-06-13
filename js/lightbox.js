@@ -44,7 +44,7 @@
     fadeDuration: 300,
     fitImagesInViewport: true,
     // maxWidth: 800,
-    //maxHeight: $(window.top).height()-350,
+    //maxHeight: $(window).height()-350,
     positionFromTop: 10,
     resizeDuration: 500,
     showImageNumberLabel: true,

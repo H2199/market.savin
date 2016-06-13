@@ -30,7 +30,7 @@ function show_upload_form(){
 	<?php
 		if(isset($_FILES['files'])){
 				$valid_formats = array("jpg", "png", "gif");
-				$max_file_size = 5*1024*1024; //1mb
+				$max_file_size = 10*1024*1024; //5mb
 				$path = "../images/"; // Upload directory
 				$small_img_path = "../small_images/";
 				$count = 0;
@@ -67,11 +67,11 @@ function show_upload_form(){
 								mysql_query($ins)or die(mysql_error());
 								list($width_i, $height_i, $type) = getimagesize($path.$filename);
 								//resize to smaller pic
-								if($height_i>=1000 || $width_i>=1000){
+								if($height_i>=2000 || $width_i>=2000){
 									if($width_i >= $height_i){
-										resize($path.$filename, $path.$filename, 1000, 0);
+										resize($path.$filename, $path.$filename, 2000, 0);
 									}else{
-											resize($path.$filename, $path.$filename, 0, 1000);
+											resize($path.$filename, $path.$filename, 0, 2000);
 										}
 								}
 								list($width_i, $height_i, $type) = getimagesize($path.$filename);// take changed size

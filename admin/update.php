@@ -53,11 +53,11 @@ switch($_POST["action"]){
 						
 						list($width_i, $height_i, $type) = getimagesize($path.$filename);
 						//resize to smaller pic
-						if($height_i>=1000 || $width_i>=1000){
+						if($height_i>=2000 || $width_i>=2000){
 							if($width_i >= $height_i){
-								resize($path.$filename, $path.$filename, 1000, 0, false);
+								resize($path.$filename, $path.$filename, 2000, 0, false);
 							}else{
-									resize($path.$filename, $path.$filename, 0, 1000, false);
+									resize($path.$filename, $path.$filename, 0, 2000, false);
 								}
 						}
 						list($width_i, $height_i, $type) = getimagesize($path.$filename);// take changed size

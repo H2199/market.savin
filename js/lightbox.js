@@ -381,7 +381,7 @@
     if (this.album.length > 1 && this.options.showImageNumberLabel) {
       var labelText = this.imageCountLabel(this.currentImageIndex + 1, this.album.length);
 	  var imageId = this.album[this.currentImageIndex].id;
-	  var imageButtons = '<a href="gallery.php?image='+imageId+'"><div class="more_image_info">Full description</div></a>';
+	  var imageButtons = '<div class="more_image_info" onclick="window.location = \'gallery.php?image='+imageId+'\';">Full description</div>';
 	 // console.log(this.album[this.currentImageIndex].id);
       this.$lightbox.find('.lb-number').html(labelText+imageButtons).fadeIn('fast');
     } else {

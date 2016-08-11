@@ -71,6 +71,7 @@ $img_info=mysql_fetch_array($q);
 	<head>
 		<?php if($auth==true){echo'<link type="text/css" rel="stylesheet" media="all" href="css/admin_style.css">';}?>
 		<meta name="description" content="Photo №<?php echo $img_N.$img_info['description'];?> " >
+		
 		<title> <?php echo $img_info["title"]?> </title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 		<!--<script type="text/javascript" src="/js/resize.js"></script>-->
@@ -78,9 +79,10 @@ $img_info=mysql_fetch_array($q);
 		<link type="text/css" rel="stylesheet" media="all" href="css/style.css">
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/> 
-
+		<link rel="canonical" href="http://market.savin.fi/gallery.php?image=<?php echo $img_N;?>" />
 	</head>
 	<body>
+		<?php include_once("google_analytics.php") ?>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>
 		<div id="menu_button">
 			<div class="line"></div>
@@ -137,7 +139,7 @@ $img_info=mysql_fetch_array($q);
 					
 				</div>
 			-->
-			<div id="order_button"><a onclick="javascript:yaCounter37608890.reachGoal('open_gallery_form');" target="_blank" href="index.php?buy&link=http://market.savin.fi/gallery.php?image=<?php echo $img_N; ?>"><button>i wish to have the same</button></a></div>
+			<div id="order_button"><a onclick="javascript:yaCounter37608890.reachGoal('open_gallery_form');" target="_blank" href="index.php?buy&link=http://market.savin.fi/gallery.php?image=<?php echo $img_N; ?>"><button>BUY it now</button></a></div>
 			<div id="tags">
 				<?php echo show_tag_list($img_info["N"], false);?>
 			</div>

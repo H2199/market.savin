@@ -86,8 +86,8 @@ function show_previews($tag_id, $amount, $all){
 			//shuffle($files); show previews in random order
 			$tag_id = $tag_id==0  ?  ''  :  '&tag='.$tag_id.'';
 			for ($i = 1; $i <=$count; $i++) {//start at 0 if random and 1 if not
-				//$images .= '<a data-lightbox="previews" href="images/'.$files[$i]['file'].'"><img src="small_images/'.$files[$i]['file'].'"></a>';
-				$images .= '<a href="gallery.php?image='.$files[$i]['N'].$tag_id.'"><img src="small_images/'.$files[$i]['file'].'">';
+				$images .= '<a data-lightbox="previews" image-id="'.$files[$i]['N'].'" href="images/'.$files[$i]['file'].'"><img src="small_images/'.$files[$i]['file'].'">';
+				//$images .= '<a href="gallery.php?image='.$files[$i]['N'].$tag_id.'"><img src="small_images/'.$files[$i]['file'].'">';
 				if($files[$i]['price']!=''){$images .= '<div class="price">€'.$files[$i]['price'].'</div>';}
 				$images .= '</a>';
 			}

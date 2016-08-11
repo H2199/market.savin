@@ -9,9 +9,7 @@ $session_login =  isset($_SESSION['login'])	? $_SESSION['login'] : '';
 $auth = ($session_pwd==$adm_pwd && $session_login==$adm_login)? true : false;
 
 require 'functions.php';
-function clean_expected_form_values(){
-	
-}
+
 switch ($_GET['action']){
 	case '1':
 		$expected_values = array('name', 'email', 'link', 'message');

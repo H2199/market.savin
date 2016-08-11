@@ -21,9 +21,10 @@ require 'functions.php';
 		<script src="js/index_form.js" type="text/javascript"></script>
 		<link href='http://fonts.googleapis.com/css?family=Neucha&subset=cyrillic,latin' rel='stylesheet' type='text/css'></link>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/> 
-
+		<link rel="canonical" href="http://market.savin.fi" />
 	</head>
 	<body>
+		<?php include_once("google_analytics.php") ?>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>
 		<div id="order_answer" style="display:none;">Thank you for the order placed!<br>I will contact you as soon as possible.</div>
 		<div id="order_error" style="display:none;"><?php if(isset($_GET['text'])){echo $_GET['text'];}?></div>
@@ -93,10 +94,12 @@ require 'functions.php';
 				</div>
 			-->
 		</div>
-		<div id="footer">
-			<div id="footer-text">
-					<a href="http://www.savin.fi">www.savin.fi</a>
+		<!--
+			<div id="footer">
+				<div id="footer-text">
+						<a href="http://www.savin.fi">www.savin.fi</a>
+				</div>
 			</div>
-		</div>
+		-->
 	</body>
 </html>

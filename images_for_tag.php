@@ -46,10 +46,10 @@ if(isset($_GET['tag'])&&!empty($_GET['tag'])){
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/> 
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<script src="/js/resize.js" type="text/javascript" ></script>
 		
 	</head>
 	<body>
+		<?php include_once("google_analytics.php") ?>
 		<?php if($auth == false){include 'yandex_metrika.php';}?>
 		<div id="menu_button">
 			<div class="line"></div>

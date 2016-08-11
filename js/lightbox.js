@@ -43,8 +43,8 @@
     alwaysShowNavOnTouchDevices: false,
     fadeDuration: 300,
     fitImagesInViewport: true,
-    // maxWidth: 800,
-    //maxHeight: $(window).height()-350,
+    maxWidth: 1000,
+    maxHeight: $(window).height()-120,
     positionFromTop: 10,
     resizeDuration: 500,
     showImageNumberLabel: true,
@@ -156,7 +156,8 @@
     function addToAlbum($link) {
       self.album.push({
         link: $link.attr('href'),
-        title: $link.attr('data-title') || $link.attr('title')
+        title: $link.attr('data-title') || $link.attr('title'),
+		id: $link.attr('image-id')
       });
     }
 
@@ -379,7 +380,10 @@
 
     if (this.album.length > 1 && this.options.showImageNumberLabel) {
       var labelText = this.imageCountLabel(this.currentImageIndex + 1, this.album.length);
-      this.$lightbox.find('.lb-number').text(labelText).fadeIn('fast');
+	  var imageId = this.album[this.currentImageIndex].id;
+	  var imageButtons = '<a href="gallery.php?image='+imageId+'"><div class="more_image_info">Full description</div></a>';
+	 // console.log(this.album[this.currentImageIndex].id);
+      this.$lightbox.find('.lb-number').html(labelText+imageButtons).fadeIn('fast');
     } else {
       this.$lightbox.find('.lb-number').hide();
     }

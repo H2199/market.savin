@@ -421,6 +421,24 @@ body {
     text-align: center;
     text-decoration: none;
 }
+.more_image_info{
+	background-color: #fff;
+    border-radius: 5px;
+    font-family: arial;
+    font-weight: 900;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -70px;
+    padding: 8px 0;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    width: 200px;
+}
+.more_image_info:hover{
+	cursor:pointer;
+	background-color:#00E7FF;
+}
 #previews {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -572,7 +590,7 @@ body {
     z-index: 11;
 }
 #index_previews .more:hover {
-	background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+    background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
     border: 5px solid #cecece;
 }
 #index_previews a {
@@ -666,7 +684,6 @@ body {
     height: 37px;
     margin-left: 370px;
     margin-top: -80px;
-    position: absolute;
     text-align: center;
     text-transform: uppercase;
     width: 260px;
